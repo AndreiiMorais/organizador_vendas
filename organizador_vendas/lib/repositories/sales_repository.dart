@@ -55,40 +55,60 @@ class SalesReposiroty {
   }
 
   //CRUD
-  Future<int> insert(SalesModel obj) async {
-    Database db = await database;
-    var result = await db.insert(
-      tableName,
-      obj.toMap(),
-    );
-    return result;
+  Future<int?> insert(SalesModel obj) async {
+    try {
+      Database db = await database;
+      var result = await db.insert(
+        tableName,
+        obj.toMap(),
+      );
+      return result;
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
   }
 
   getSales() async {
-    Database db = await database;
-    String sql = "SELECT * FROM $tableName";
+    try {
+      Database db = await database;
+      String sql = "SELECT * FROM $tableName";
 
-    List listSales = await db.rawQuery(sql);
-    return listSales;
+      List listSales = await db.rawQuery(sql);
+      return listSales;
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
   }
 
-  Future<int> updateSales(SalesModel obj) async {
-    Database db = await database;
-    return await db.update(
-      tableName,
-      obj.toMap(),
-      where: "id = ?",
-      whereArgs: [obj.id],
-    );
+  Future<int?> updateSales(SalesModel obj) async {
+    try {
+      Database db = await database;
+      return await db.update(
+        tableName,
+        obj.toMap(),
+        where: "id = ?",
+        whereArgs: [obj.id],
+      );
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
   }
 
-  Future<int> deleteSale(int id) async {
-    Database db = await database;
-    var result = await db.delete(
-      tableName,
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-    return result;
+  Future<int?> deleteSale(int id) async {
+    try {
+      Database db = await database;
+      var result = await db.delete(
+        tableName,
+        where: 'id = ?',
+        whereArgs: [id],
+      );
+      return result;
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
   }
 }
