@@ -17,6 +17,7 @@ class CustomEditingBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onTap: () {},
       controller: control,
       maxLength: maxLength,
       textCapitalization: TextCapitalization.words,
@@ -24,8 +25,6 @@ class CustomEditingBox extends StatelessWidget {
       enabled: false,
       decoration: InputDecoration(
         label: Text(labelText),
-        icon: const Icon(Icons.edit),
-
       ),
     );
   }

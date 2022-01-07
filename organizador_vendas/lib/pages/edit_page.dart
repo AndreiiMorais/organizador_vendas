@@ -16,10 +16,28 @@ class EditPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(model.name),
       ),
-      body: CustomEditingBox(
-        control: controller,
-        maxLength: 10,
-        labelText: 'text',
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 8,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: CustomEditingBox(
+                control: controller,
+                maxLength: 10,
+                labelText: 'text',
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: IconButton(
+              icon: Icon(Icons.edit),
+              onPressed: () {},
+            ),
+          )
+        ],
       ),
     );
   }
