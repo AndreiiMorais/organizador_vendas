@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:organizador_vendas/controls/db_control.dart';
+import 'package:organizador_vendas/models/list_model.dart';
+import 'package:organizador_vendas/widgets/custom_sale_alertbox.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  DbControl control = DbControl();
+  List<SalesModel> list = <SalesModel>[];
+  HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -10,20 +17,27 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    widget.list = widget.control.getSales();
     return Scaffold(
       appBar: AppBar(
         title: const Text('homepage'),
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: widget.list.length,
         itemBuilder: (context, index) {
-          return const ListTile(
+          return ListTile(
             title: Card(
-              child: Text('card'),
+              child: Text(widget.list[index].name),
             ),
-            trailing: Text('trail'),
+            trailing: Text(widget.list[index].quant),
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          customShowAlertDialog(context);
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
