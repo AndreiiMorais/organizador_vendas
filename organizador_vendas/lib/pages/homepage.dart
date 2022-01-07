@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:organizador_vendas/controls/db_control.dart';
 import 'package:organizador_vendas/models/list_model.dart';
+import 'package:organizador_vendas/pages/edit_page.dart';
 import 'package:organizador_vendas/widgets/custom_sale_alertbox.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,11 +27,18 @@ class _HomePageState extends State<HomePage> {
         future: widget.control.getSale(),
         builder: (context, snapshot) {
           widget.list = snapshot.data as List<SalesModel>;
-          return Refresh(
+          return RefreshIndicator(
+            onRefresh: _reload,
             child: ListView.builder(
               itemCount: widget.list.length,
               itemBuilder: (context, index) {
                 return ListTile(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      '/edit',
+                      arguments: widget.list[index],
+                    );
+                  },
                   title: Card(
                     child: Text(widget.list[index].name),
                   ),
@@ -48,5 +56,13 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Future<void> _reload() async {
+    var tempList = await widget.control.getSale();
+
+    setState(() {
+      widget.list = tempList;
+    });
   }
 }
