@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:organizador_vendas/controls/db_control.dart';
 import 'package:organizador_vendas/models/list_model.dart';
-import 'package:organizador_vendas/pages/edit_page.dart';
 import 'package:organizador_vendas/widgets/custom_sale_alertbox.dart';
 
 class HomePage extends StatefulWidget {

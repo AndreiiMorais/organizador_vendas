@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:organizador_vendas/controls/db_control.dart';
 import 'package:organizador_vendas/models/list_model.dart';
+import 'package:organizador_vendas/widgets/custom_confirm_dialog.dart';
 import 'package:organizador_vendas/widgets/custom_texteditingbox.dart';
 
-class EditPage extends StatelessWidget {
-  TextEditingController controller = TextEditingController();
-  SalesModel model = SalesModel('', '', '', '');
-  DbControl dbControl = DbControl();
+class EditPage extends StatefulWidget {
   EditPage({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<EditPage> createState() => _EditPageState();
+}
+
+class _EditPageState extends State<EditPage> {
+  TextEditingController controller = TextEditingController();
+
+  SalesModel model = SalesModel('', '', '', '');
+
+  DbControl dbControl = DbControl();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +37,9 @@ class EditPage extends StatelessWidget {
             child: IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () {
-                dbControl.saleDelete(model.id!);
+                setState(() {
+                  customConfirmDialog(context, model.id!);
+                });
               },
             ),
           ),
