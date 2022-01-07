@@ -6,7 +6,7 @@ class SalesModel {
   String _name = '';
   String _address = '';
   String _quant = '';
-  String _obs = '';
+  String? _obs = '';
 
   SalesModel(this._name, this._address, this._quant, this._obs);
 
