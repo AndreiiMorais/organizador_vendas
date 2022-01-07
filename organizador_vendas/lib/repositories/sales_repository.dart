@@ -68,7 +68,7 @@ class SalesReposiroty {
     }
   }
 
-  getSales() async {
+  Future<List> getSales() async {
     try {
       Database db = await database;
       String sql = "SELECT * FROM $tableName";
@@ -76,7 +76,7 @@ class SalesReposiroty {
       return listSales;
     } catch (ex) {
       print(ex);
-      return null;
+      return [];
     }
   }
 

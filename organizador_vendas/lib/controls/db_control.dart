@@ -18,10 +18,10 @@ class DbControl {
     }
   }
 
-  getSales() async {
-    List salesGetted = await _db.getSales();
+  getSale() async {
     List<SalesModel> tempList = <SalesModel>[];
-
+    List salesGetted = await _db.getSales();
+    
     for (var item in salesGetted) {
       SalesModel c = SalesModel.fromMap(item);
       tempList.add(c);
@@ -33,6 +33,6 @@ class DbControl {
 
   void saleDelete(int id) async {
     await _db.deleteSale(id);
-    getSales();
+    getSale();
   }
 }

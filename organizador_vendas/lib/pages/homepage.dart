@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    widget.list = widget.control.getSales();
+    widget.list = widget.control.getSale();
     return Scaffold(
       appBar: AppBar(
         title: const Text('homepage'),
