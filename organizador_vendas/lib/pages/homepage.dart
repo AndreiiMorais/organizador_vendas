@@ -17,19 +17,27 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    widget.list = widget.control.getSale();
     return Scaffold(
       appBar: AppBar(
         title: const Text('homepage'),
       ),
-      body: ListView.builder(
-        itemCount: widget.list.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Card(
-              child: Text(widget.list[index].name),
+      body: FutureBuilder(
+        initialData: widget.list,
+        future: widget.control.getSale(),
+        builder: (context, snapshot) {
+          widget.list = snapshot.data as List<SalesModel>;
+          return Refresh(
+            child: ListView.builder(
+              itemCount: widget.list.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Card(
+                    child: Text(widget.list[index].name),
+                  ),
+                  trailing: Text(widget.list[index].quant),
+                );
+              },
             ),
-            trailing: Text(widget.list[index].quant),
           );
         },
       ),

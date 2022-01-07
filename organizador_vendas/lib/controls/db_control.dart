@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:organizador_vendas/models/list_model.dart';
 import 'package:organizador_vendas/repositories/sales_repository.dart';
 
@@ -18,7 +17,7 @@ class DbControl {
     }
   }
 
-  getSale() async {
+  Future <List<SalesModel>>getSale() async {
     List<SalesModel> tempList = <SalesModel>[];
     List salesGetted = await _db.getSales();
     

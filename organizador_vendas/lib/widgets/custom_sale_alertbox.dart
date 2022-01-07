@@ -67,6 +67,7 @@ customShowAlertDialog(BuildContext context) {
           actions: [
             TextButton(
               onPressed: () {
+                
                 control.insertSale(
                     name.text, address.text, quant.text, obs.text);
               },
