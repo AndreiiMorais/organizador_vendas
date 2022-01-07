@@ -1,3 +1,10 @@
+// ignore_for_file: prefer_conditional_assignment
+
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:organizador_vendas/models/list_model.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SalesReposiroty {
@@ -15,5 +22,73 @@ class SalesReposiroty {
         '$colAddress Text, '
         '$colQuant Text, '
         '$colObs Text)');
+  }
+
+  //singleton
+  static SalesReposiroty? _dataBaseHelper;
+  static Database? _database;
+
+  SalesReposiroty._createInstance();
+
+  factory SalesReposiroty() {
+    if (_dataBaseHelper == null) {
+      _dataBaseHelper = SalesReposiroty._createInstance();
+    }
+
+    return _dataBaseHelper!;
+  }
+
+  Future<Database> get database async {
+    if (_database == null) {
+      _database = await inicializaBanco();
+    }
+    return _database!;
+  }
+
+  Future<Database> inicializaBanco() async {
+    Directory directory = await getApplicationDocumentsDirectory();
+    String caminho = directory.path + 'sales.bd';
+
+    var bancodeDados =
+        await openDatabase(caminho, version: 1, onCreate: _criaBanco);
+    return bancodeDados;
+  }
+
+  //CRUD
+  Future<int> insert(SalesModel obj) async {
+    Database db = await database;
+    var result = await db.insert(
+      tableName,
+      obj.toMap(),
+    );
+    return result;
+  }
+
+  getSales() async {
+    Database db = await database;
+    String sql = "SELECT * FROM $tableName";
+
+    List listSales = await db.rawQuery(sql);
+    return listSales;
+  }
+
+  Future<int> updateSales(SalesModel obj) async {
+    Database db = await database;
+    return await db.update(
+      tableName,
+      obj.toMap(),
+      where: "id = ?",
+      whereArgs: [obj.id],
+    );
+  }
+
+  Future<int> deleteSale(int id) async {
+    Database db = await database;
+    var result = await db.delete(
+      tableName,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    return result;
   }
 }

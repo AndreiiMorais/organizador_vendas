@@ -1,11 +1,18 @@
+// ignore_for_file: unnecessary_getters_setters
+
 class SalesModel {
   int? _id;
+
   String _name = '';
   String _address = '';
   String _quant = '';
   String _obs = '';
 
   SalesModel(this._name, this._address, this._quant, this._obs);
+
+  int? get id => _id;
+
+  set id(int? value) => _id = value;
 
   String get name => _name;
 
