@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:organizador_vendas/models/list_model.dart';
+import 'package:organizador_vendas/widgets/custom_texteditingbox.dart';
 
 class EditPage extends StatelessWidget {
+  TextEditingController controller = TextEditingController();
   SalesModel model = SalesModel('', '', '', '');
   EditPage({
     Key? key,
@@ -14,7 +16,11 @@ class EditPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(model.name),
       ),
-      body: ,
+      body: CustomEditingBox(
+        control: controller,
+        maxLength: 10,
+        labelText: 'text',
+      ),
     );
   }
 }

@@ -3,29 +3,29 @@ import 'package:flutter/material.dart';
 class CustomEditingBox extends StatelessWidget {
   TextEditingController control;
   int maxLength;
-  bool? autoFocus = false;
+  bool? autoFocus;
   String labelText;
-  bool? readOnly = false;
+
   CustomEditingBox({
     Key? key,
     required this.control,
     required this.maxLength,
-    this.autoFocus,
+    this.autoFocus = false,
     required this.labelText,
-    this.readOnly
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      
       controller: control,
       maxLength: maxLength,
       textCapitalization: TextCapitalization.words,
       autofocus: autoFocus!,
-      readOnly: readOnly!,
+      enabled: false,
       decoration: InputDecoration(
         label: Text(labelText),
+        icon: const Icon(Icons.edit),
+
       ),
     );
   }
