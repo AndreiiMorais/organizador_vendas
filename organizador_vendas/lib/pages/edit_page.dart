@@ -14,29 +14,42 @@ class EditPage extends StatelessWidget {
     model = ModalRoute.of(context)!.settings.arguments as SalesModel;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pushReplacementNamed('/home'),
+        ),
         title: Text(model.name),
       ),
-      body: Row(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            flex: 8,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: CustomEditingBox(
-                control: controller,
-                maxLength: 10,
-                labelText: 'text',
-              ),
+          TextButton(
+            child: Text(
+              model.name,
+              style: const TextStyle(color: Colors.black),
             ),
+            onPressed: () {
+              customTextEditingBox(context, model, model.name);
+            },
           ),
-          Expanded(
-            flex: 1,
-            child: IconButton(
-              icon: Icon(Icons.edit),
-              onPressed: () {},
+          TextButton(
+            child: Text(
+              model.address,
+              style: const TextStyle(color: Colors.black),
             ),
-          )
+            onPressed: () {
+              customTextEditingBox(context, model, model.address);
+            },
+          ),
+          TextButton(
+            child: Text(
+              model.quant,
+              style: const TextStyle(color: Colors.black),
+            ),
+            onPressed: () {
+              customTextEditingBox(context, model, model.quant);
+            },
+          ),
         ],
       ),
     );

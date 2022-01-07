@@ -17,10 +17,10 @@ class DbControl {
     }
   }
 
-  Future <List<SalesModel>>getSale() async {
+  Future<List<SalesModel>> getSale() async {
     List<SalesModel> tempList = <SalesModel>[];
     List salesGetted = await _db.getSales();
-    
+
     for (var item in salesGetted) {
       SalesModel c = SalesModel.fromMap(item);
       tempList.add(c);
@@ -33,5 +33,9 @@ class DbControl {
   void saleDelete(int id) async {
     await _db.deleteSale(id);
     getSale();
+  }
+
+  void updateSale(SalesModel obj) async {
+    await _db.updateSales(obj);
   }
 }
