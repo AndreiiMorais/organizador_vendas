@@ -14,8 +14,6 @@ customShowAlertDialog(BuildContext context) {
       context: context,
       builder: (context) {
         return AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           title: const Text('Adicionar Venda'),
           content: SingleChildScrollView(
             child: Column(
