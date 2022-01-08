@@ -19,7 +19,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('homepage'),
+        backgroundColor: const Color(0xFF0D47A1),
+        title: const Text('Lista de Entregas'),
       ),
       body: FutureBuilder(
         initialData: widget.list,
@@ -39,9 +40,16 @@ class _HomePageState extends State<HomePage> {
                     );
                   },
                   title: Card(
-                    child: Text(widget.list[index].name),
+                    elevation: 10,
+                    child: Text(
+                      widget.list[index].name,
+                      style: const TextStyle(fontSize: 20),
+                    ),
                   ),
-                  trailing: Text(widget.list[index].quant),
+                  trailing: Text(
+                    widget.list[index].quant + ' Kg',
+                    style: const TextStyle(fontSize: 20),
+                  ),
                 );
               },
             ),
@@ -49,6 +57,7 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xFF0D47A1),
         onPressed: () {
           customShowAlertDialog(context);
         },

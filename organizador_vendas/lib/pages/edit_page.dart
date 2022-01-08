@@ -26,11 +26,14 @@ class _EditPageState extends State<EditPage> {
     controller.text = model.obs;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF0D47A1),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pushReplacementNamed('/home'),
         ),
-        title: Text(model.name),
+        title: Text(
+          model.name,
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 5),
@@ -63,9 +66,9 @@ class _EditPageState extends State<EditPage> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10, top: 10),
                   child: IconButton(
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.edit,
-                      color: Colors.red,
+                      color: Colors.blue.shade500,
                     ),
                     onPressed: () {
                       customTextEditingBox(context, model, model.name);
@@ -88,9 +91,9 @@ class _EditPageState extends State<EditPage> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: IconButton(
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.edit,
-                      color: Colors.red,
+                      color: Colors.blue.shade600,
                     ),
                     onPressed: () {
                       customTextEditingBox(context, model, model.address);
@@ -104,7 +107,7 @@ class _EditPageState extends State<EditPage> {
                 Expanded(
                   flex: 1,
                   child: Text(
-                    model.quant,
+                    model.quant + ' Kg',
                     style: const TextStyle(
                       fontSize: 23,
                     ),
@@ -113,9 +116,9 @@ class _EditPageState extends State<EditPage> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: IconButton(
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.edit,
-                      color: Colors.red,
+                      color: Colors.blue.shade600,
                     ),
                     onPressed: () {
                       customTextEditingBox(context, model, model.quant);
@@ -125,6 +128,9 @@ class _EditPageState extends State<EditPage> {
               ],
             ),
             TextField(
+              decoration: const InputDecoration(
+                hintText: 'Observações',
+              ),
               maxLines: null,
               keyboardType: TextInputType.text,
               controller: controller,
@@ -139,38 +145,3 @@ class _EditPageState extends State<EditPage> {
     );
   }
 }
-
-
-// TextButton(
-//             child: Text(
-//               model.name,
-//               style: const TextStyle(color: Colors.black),
-//               textAlign: TextAlign.left,
-//             ),
-//             onPressed: () {
-//               customTextEditingBox(context, model, model.name);
-//             },
-//           ),
-//           TextButton(
-//             child: Text(
-//               model.address,
-//               style: const TextStyle(color: Colors.black),
-//               textAlign: TextAlign.left,
-//               textDirection: TextDirection.ltr,
-//             ),
-//             onPressed: () {
-//               customTextEditingBox(context, model, model.address);
-//             },
-//           ),
-//           TextButton(
-//             style: ButtonStyle(
-//               minimumSize: MaterialStateProperty.all(Size(5, 5)),
-//             ),
-//             child: Text(
-//               model.quant,
-//               style: const TextStyle(color: Colors.black),
-//             ),
-//             onPressed: () {
-//               customTextEditingBox(context, model, model.quant);
-//             },
-//           ),
