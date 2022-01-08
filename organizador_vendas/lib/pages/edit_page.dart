@@ -131,6 +131,7 @@ class _EditPageState extends State<EditPage> {
               decoration: const InputDecoration(
                 hintText: 'Observações',
               ),
+              style: const TextStyle(fontSize: 20),
               maxLines: null,
               keyboardType: TextInputType.text,
               controller: controller,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:organizador_vendas/pages/edit_page.dart';
 import 'package:organizador_vendas/pages/homepage.dart';
+import 'package:organizador_vendas/themes/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // primaryColor: Colors.blue.shade900,
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme,
       initialRoute: '/home',
       routes: {
         '/home': (context) => HomePage(),
