@@ -73,10 +73,10 @@ class SalesReposiroty {
       Database db = await database;
       String sql = "SELECT * FROM $tableName";
       List listSales = await db.rawQuery(sql);
-      return listSales;
+      return  listSales;
     } catch (ex) {
       print(ex);
-      return null;
+      return [];
     }
   }
 

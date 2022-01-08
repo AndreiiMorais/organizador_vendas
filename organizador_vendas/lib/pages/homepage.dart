@@ -17,28 +17,60 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    widget.list = widget.control.getSales();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('homepage'),
+        backgroundColor: const Color(0xFF0D47A1),
+        title: const Text('Lista de Entregas'),
       ),
-      body: ListView.builder(
-        itemCount: widget.list.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Card(
-              child: Text(widget.list[index].name),
+      body: FutureBuilder(
+        initialData: widget.list,
+        future: widget.control.getSale(),
+        builder: (context, snapshot) {
+          widget.list = snapshot.data as List<SalesModel>;
+          return RefreshIndicator(
+            onRefresh: _reload,
+            child: ListView.builder(
+              itemCount: widget.list.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  onTap: () {
+                    Navigator.of(context).pushReplacementNamed(
+                      '/edit',
+                      arguments: widget.list[index],
+                    );
+                  },
+                  title: Card(
+                    elevation: 10,
+                    child: Text(
+                      widget.list[index].name,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  trailing: Text(
+                    widget.list[index].quant + ' Kg',
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                );
+              },
             ),
-            trailing: Text(widget.list[index].quant),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xFF0D47A1),
         onPressed: () {
           customShowAlertDialog(context);
         },
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Future<void> _reload() async {
+    var tempList = await widget.control.getSale();
+
+    setState(() {
+      widget.list = tempList;
+    });
   }
 }

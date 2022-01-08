@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:organizador_vendas/models/list_model.dart';
 import 'package:organizador_vendas/repositories/sales_repository.dart';
 
@@ -18,9 +17,9 @@ class DbControl {
     }
   }
 
-  getSales() async {
-    List salesGetted = await _db.getSales();
+  Future<List<SalesModel>> getSale() async {
     List<SalesModel> tempList = <SalesModel>[];
+    List salesGetted = await _db.getSales();
 
     for (var item in salesGetted) {
       SalesModel c = SalesModel.fromMap(item);
@@ -33,6 +32,10 @@ class DbControl {
 
   void saleDelete(int id) async {
     await _db.deleteSale(id);
-    getSales();
+    getSale();
+  }
+
+  void updateSale(SalesModel obj) async {
+    await _db.updateSales(obj);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:organizador_vendas/pages/edit_page.dart';
 import 'package:organizador_vendas/pages/homepage.dart';
 
 void main() {
@@ -13,9 +14,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        // primaryColor: Colors.blue.shade900,
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      initialRoute: '/home',
+      routes: {
+        '/home': (context) => HomePage(),
+        '/edit': (context) => EditPage(),
+      },
     );
   }
 }
