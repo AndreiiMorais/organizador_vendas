@@ -85,9 +85,12 @@ class _HomePageState extends State<HomePage> {
                   },
                   title: Card(
                     elevation: 10,
-                    child: Text(
-                      widget.list[index].name,
-                      style: const TextStyle(fontSize: 20),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        widget.list[index].name,
+                        style: const TextStyle(fontSize: 20),
+                      ),
                     ),
                   ),
                   trailing: Text(
