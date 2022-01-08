@@ -45,58 +45,132 @@ class _EditPageState extends State<EditPage> {
           ),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextButton(
-            child: Text(
-              model.name,
-              style: const TextStyle(color: Colors.black),
-              textAlign: TextAlign.left,
+      body: Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    model.name,
+                    style: const TextStyle(fontSize: 23),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10, top: 10),
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.edit,
+                      color: Colors.red,
+                    ),
+                    onPressed: () {
+                      customTextEditingBox(context, model, model.name);
+                    },
+                  ),
+                ),
+              ],
             ),
-            onPressed: () {
-              customTextEditingBox(context, model, model.name);
-            },
-          ),
-          TextButton(
-            child: Text(
-              model.address,
-              style: const TextStyle(color: Colors.black),
-              textAlign: TextAlign.left,
-              textDirection: TextDirection.ltr,
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    model.address,
+                    style: const TextStyle(
+                      fontSize: 23,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.edit,
+                      color: Colors.red,
+                    ),
+                    onPressed: () {
+                      customTextEditingBox(context, model, model.address);
+                    },
+                  ),
+                ),
+              ],
             ),
-            onPressed: () {
-              customTextEditingBox(context, model, model.address);
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 5),
-            child: TextButton(
-              style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(5, 5)),
-              ),
-              child: Text(
-                model.quant,
-                style: const TextStyle(color: Colors.black),
-              ),
-              onPressed: () {
-                customTextEditingBox(context, model, model.quant);
-              },
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    model.quant,
+                    style: const TextStyle(
+                      fontSize: 23,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.edit,
+                      color: Colors.red,
+                    ),
+                    onPressed: () {
+                      customTextEditingBox(context, model, model.quant);
+                    },
+                  ),
+                ),
+              ],
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
+            TextField(
+              maxLines: null,
+              keyboardType: TextInputType.text,
               controller: controller,
               onSubmitted: (value) {
                 model.obs = controller.text;
                 dbControl.updateSale(model);
               },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
+
+
+// TextButton(
+//             child: Text(
+//               model.name,
+//               style: const TextStyle(color: Colors.black),
+//               textAlign: TextAlign.left,
+//             ),
+//             onPressed: () {
+//               customTextEditingBox(context, model, model.name);
+//             },
+//           ),
+//           TextButton(
+//             child: Text(
+//               model.address,
+//               style: const TextStyle(color: Colors.black),
+//               textAlign: TextAlign.left,
+//               textDirection: TextDirection.ltr,
+//             ),
+//             onPressed: () {
+//               customTextEditingBox(context, model, model.address);
+//             },
+//           ),
+//           TextButton(
+//             style: ButtonStyle(
+//               minimumSize: MaterialStateProperty.all(Size(5, 5)),
+//             ),
+//             child: Text(
+//               model.quant,
+//               style: const TextStyle(color: Colors.black),
+//             ),
+//             onPressed: () {
+//               customTextEditingBox(context, model, model.quant);
+//             },
+//           ),
