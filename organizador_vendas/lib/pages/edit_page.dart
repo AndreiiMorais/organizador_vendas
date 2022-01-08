@@ -46,12 +46,14 @@ class _EditPageState extends State<EditPage> {
         ],
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextButton(
             child: Text(
               model.name,
               style: const TextStyle(color: Colors.black),
+              textAlign: TextAlign.left,
             ),
             onPressed: () {
               customTextEditingBox(context, model, model.name);
@@ -61,19 +63,27 @@ class _EditPageState extends State<EditPage> {
             child: Text(
               model.address,
               style: const TextStyle(color: Colors.black),
+              textAlign: TextAlign.left,
+              textDirection: TextDirection.ltr,
             ),
             onPressed: () {
               customTextEditingBox(context, model, model.address);
             },
           ),
-          TextButton(
-            child: Text(
-              model.quant,
-              style: const TextStyle(color: Colors.black),
+          Padding(
+            padding: const EdgeInsets.only(left: 5),
+            child: TextButton(
+              style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(Size(5, 5)),
+              ),
+              child: Text(
+                model.quant,
+                style: const TextStyle(color: Colors.black),
+              ),
+              onPressed: () {
+                customTextEditingBox(context, model, model.quant);
+              },
             ),
-            onPressed: () {
-              customTextEditingBox(context, model, model.quant);
-            },
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
