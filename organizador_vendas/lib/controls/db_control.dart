@@ -38,4 +38,8 @@ class DbControl {
   void updateSale(SalesModel obj) async {
     await _db.updateSales(obj);
   }
+
+  void deleteAll() async {
+    await _db.deleteAllSales();
+  }
 }

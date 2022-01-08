@@ -24,9 +24,6 @@ customTextEditingBox(BuildContext context, SalesModel obj, String text) {
     context: context,
     builder: (context) {
       return AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
         title: const Text('Editar'),
         content: TextField(
           autofocus: true,

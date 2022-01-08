@@ -73,7 +73,7 @@ class SalesReposiroty {
       Database db = await database;
       String sql = "SELECT * FROM $tableName";
       List listSales = await db.rawQuery(sql);
-      return  listSales;
+      return listSales;
     } catch (ex) {
       print(ex);
       return [];
@@ -104,6 +104,16 @@ class SalesReposiroty {
         whereArgs: [id],
       );
       return result;
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
+  }
+
+  deleteAllSales() async {
+    try {
+      Database db = await database;
+      return await db.delete(tableName);
     } catch (ex) {
       print(ex);
       return null;

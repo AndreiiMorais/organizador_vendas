@@ -12,4 +12,9 @@ final theme = ThemeData(
   textTheme: const TextTheme(
     bodyText2: TextStyle(fontWeight: FontWeight.bold),
   ),
+  dialogTheme: DialogTheme(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30),
+    ),
+  ),
 );

@@ -5,7 +5,7 @@ import 'package:organizador_vendas/widgets/custom_confirm_dialog.dart';
 import 'package:organizador_vendas/widgets/custom_texteditingbox.dart';
 
 class EditPage extends StatefulWidget {
-  EditPage({
+  const EditPage({
     Key? key,
   }) : super(key: key);
 

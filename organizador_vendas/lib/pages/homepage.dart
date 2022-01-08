@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:organizador_vendas/controls/db_control.dart';
 import 'package:organizador_vendas/models/list_model.dart';
+import 'package:organizador_vendas/widgets/custom_confirm_dialog.dart';
+import 'package:organizador_vendas/widgets/custom_credits.dart';
 import 'package:organizador_vendas/widgets/custom_sale_alertbox.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,8 +21,50 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF0D47A1),
         title: const Text('Lista de Entregas'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              _reload();
+            },
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              tileColor: Colors.blue.shade900,
+              title: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'Opções',
+                  style:
+                      TextStyle(fontSize: 30, color: Colors.lightBlue.shade100),
+                ),
+              ),
+            ),
+            ListTile(
+              title: const Text(
+                'Limpar Lista',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                customConfirmDialog(context, null);
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Creditos',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                customCreditsDialog(context);
+              },
+            )
+          ],
+        ),
       ),
       body: FutureBuilder(
         initialData: widget.list,
@@ -57,7 +101,6 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFF0D47A1),
         onPressed: () {
           customShowAlertDialog(context);
         },
@@ -74,3 +117,37 @@ class _HomePageState extends State<HomePage> {
     });
   }
 }
+
+
+// Column(
+//           children: [
+//             Row(
+//               children: [
+//                 Expanded(
+//                   child: Container(
+//                     child: Align(
+//                       alignment: Alignment.centerLeft,
+//                       child: Text(
+//                         'Opções:',
+//                         style: TextStyle(
+//                             fontSize: 30, color: Colors.lightBlue.shade100),
+//                       ),
+//                     ),
+//                     color: Colors.blue.shade900,
+//                     height: 150,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             ListView(
+//               children: [
+//                 ListTile(
+//                   title: const Text('Limpar Lista'),
+//                   onTap: () {
+//                     customConfirmDialog(context, null);
+//                   },
+//                 ),
+//               ],
+//             ),
+//           ],
+//         ),
